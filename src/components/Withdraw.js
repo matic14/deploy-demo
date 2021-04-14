@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import withdrawTokens from "../connection/withdrawToken";
 import erc20Abi from "../ABIs/erc20";
 import Aave from "../ABIs/AaveLendingPool.json";
+import { withdraw } from "../libs/operations";
 
 const Deposit = (props) => {
   const [inputToken, setInputToken] = useState("Ether");
@@ -37,7 +38,8 @@ const Deposit = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.withdrawTokenFromCompound(inputAmount);
+    // props.withdrawToken(inputAmount);
+    withdraw(props.market, inputToken, inputAmount);
   };
 
   return (

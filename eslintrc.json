@@ -56,6 +56,7 @@
   ],
   "root": true,
   "rules": {
+    "react/react-in-jsx-scope": 0,
     "arrow-body-style": ["warn", "never"],
     "arrow-parens": ["warn", "as-needed"],
     "complexity": ["warn", 10],

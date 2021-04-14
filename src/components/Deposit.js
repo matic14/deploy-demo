@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import tokens from "../connection/tokens";
 import erc20Abi from "../ABIs/erc20";
+import { deposit } from "../libs/operations";
 // import Aave from "../ABIs/AaveLendingPool.json";
 
 const Deposit = (props) => {
@@ -41,7 +42,8 @@ const Deposit = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.depositTokenToCompound(inputAmount);
+    // props.depositTokenToCompound(inputAmount);
+    deposit(props.market, inputToken, inputAmount);
   };
 
   return (
