@@ -22,7 +22,7 @@ const Deposit = (props) => {
       (token) => token.name === reqtoken
     );
 
-    let walletAddress = "0x32feA766F5B862Af1e0D003caC670c5BA2079070";
+    let walletAddress = "0x4aB289D129F77676C9d239fD22bf8cd62F8b13E3";
 
     console.log("tokenValue", tokenValue);
     let contract = new web3.eth.Contract(erc20Abi, tokenValue[0].tokenAddress);
