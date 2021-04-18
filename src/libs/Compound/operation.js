@@ -20,17 +20,11 @@ export function deposit(amount) {
   });
 }
 
-// createContract().then(({ account, erc20Token, cToken }) => {
-//   if (cToken !== "undefined") {
-//     return erc20Token.methods
-//       .approve(cToken._address, amount)
-//       .send({ from: account })
-//       .then(function (receipt) {
-//         console.log("receipt", receipt);
-//         cToken.methods.mint(amount).send({
-//           from: account,
-//         });
-//       })
-//       .catch(console.log);
-//   }
-// });
+export function withdraw(amount) {
+  initContract().then(({ account, erc20Token, cToken }) => {
+    if (cToken !== "undefined") {
+      const tx = cToken.methods.redeem(amount);
+      sendTransaction(tx, account).then(console.log).catch(console.log);
+    }
+  });
+}

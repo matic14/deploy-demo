@@ -67,7 +67,7 @@ const Deposit = (props) => {
                   value={token.name}
                   key={token.name}
                 >
-                  {token.name}
+                  {token.symbol}
                 </option>
               ))}
             </select>

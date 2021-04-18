@@ -2,16 +2,11 @@ import { useState } from "react";
 import tokens from "../connection/tokens";
 import erc20Abi from "../ABIs/erc20";
 import { deposit } from "../libs/operations";
-// import Aave from "../ABIs/AaveLendingPool.json";
 
 const Deposit = (props) => {
-  const [inputToken, setInputToken] = useState("Ether");
+  const [inputToken, setInputToken] = useState("DAI");
   const [tokenBalance, setTokenBalance] = useState(0);
   const [inputAmount, setInputAmount] = useState(0);
-
-  // useEffect(() => {
-  //   setTokenBalance(props.tokenBalance1);
-  // }, []);
 
   function onTokenChange(e) {
     setInputToken(e.target.value);
@@ -42,7 +37,6 @@ const Deposit = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // props.depositTokenToCompound(inputAmount);
     deposit(props.market, inputToken, inputAmount);
   };
 
