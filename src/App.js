@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Deposit from "./components/Deposit";
 import Withdrawl from "./components/Withdraw";
-import Balance from "./components/Balance";
+// import Balance from "./components/Balance";
 import { loadWeb3 } from "./connection/walletConnection";
 import markets from "./configs/markets";
-import { myToken } from "./libs/tokens";
 
 function App() {
   const [account, setAccount] = useState("");

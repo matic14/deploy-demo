@@ -1,20 +1,18 @@
-import { createContract } from "../libs/contracts";
-import { deposit as cdeposit } from "./Compound/compound";
+import { initContract } from "../libs/contracts";
+import { deposit as cdeposit } from "./Compound/operation";
 
 export const deposit = (market, type, amount) => {
   console.log("OPERATION Deposit token", market, type, amount);
 
   if (market === "Compound") {
     if (type === "DAI") {
-      createContract().then(({ account, erc20Token, cToken }) => {
-        cdeposit(amount);
-      });
+      cdeposit(amount);
     }
   }
 
   if (market === "Aave") {
     if (type === "DAI") {
-      createContract().then(({ account, erc20Token, lendingPool }) => {
+      initContract().then(({ account, erc20Token, lendingPool }) => {
         console.log("Indeposit", account);
         if (lendingPool !== "undefined") {
           // try {
@@ -36,7 +34,7 @@ export const deposit = (market, type, amount) => {
 export const withdraw = (market, type, amount) => {
   if (market === "Compound") {
     if (type === "cDAI") {
-      createContract().then(({ account, erc20Token, cToken }) => {
+      initContract().then(({ account, erc20Token, cToken }) => {
         console.log("Indeposit", account);
         if (cToken !== "undefined") {
           cToken.methods
@@ -51,7 +49,7 @@ export const withdraw = (market, type, amount) => {
 
   if (market === "Aave") {
     if (type === "aDAI") {
-      createContract().then(({ account, lendingPool, erc20Token }) => {
+      initContract().then(({ account, lendingPool, erc20Token }) => {
         if (lendingPool !== "undefined") {
           lendingPool.methods
             .withdraw(erc20Token._address, amount, account)

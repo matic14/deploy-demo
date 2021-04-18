@@ -1,8 +1,8 @@
-const sendTransaction = (tx, options = {}) => {
+export const sendTransaction = (tx, account, options = {}) => {
   return tx
     .estimateGas()
     .then((gas) => {
-      return tx.send({ ...options, gas });
+      return tx.send({ ...options, gas, from: account });
     })
     .catch(console.log);
 };

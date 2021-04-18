@@ -3,7 +3,7 @@ import AaveAbi from "../ABIs/AaveLendingPool.json";
 import compoundAbi from "../ABIs/Compound.json";
 import cTokenAbi from "../ABIs/cToken.json";
 
-export const createContract = async () => {
+export const initContract = async () => {
   const web3 = window.web3;
   const accounts = await web3.eth.getAccounts();
   const account = accounts[0];
