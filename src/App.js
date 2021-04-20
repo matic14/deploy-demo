@@ -5,6 +5,7 @@ import Withdrawl from "./components/Withdraw";
 import Balance from "./components/Balance";
 import { loadWeb3 } from "./connection/walletConnection";
 import markets from "./configs/markets";
+import Market from "./components/Market";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -43,37 +44,56 @@ function App() {
 
   return (
     <div>
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <main
-            role="main"
-            className="col-lg-12 ml-auto mr-auto"
-            style={{ maxWidth: "800px" }}
-          >
-            <select
-              className="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example"
-              value={market}
-              onChange={onMarketChange}
-            >
-              <option defaultValue="Aave">Select one</option>
-              {markets.map((market) => (
-                <option
-                  style={{ fontSize: "1rem" }}
-                  value={market.name}
-                  key={market.name}
-                >
-                  {market.name}
-                </option>
-              ))}
-            </select>
-            <div className="content mr-auto ml-auto">
-              <Deposit account={account} balance={balance} market={market} />
-              <Withdrawl account={account} balance={balance} market={market} />
-            </div>
-            <Balance />
-          </main>
+      <div class="main-container">
+        <div class="header">header</div>
+        <div class="sidebar">
+          <Market />
         </div>
+        <div class="main">
+          <div className="container-fluid mt-5">
+            <div className="row">
+              <main
+                role="main"
+                className="col-lg-12 ml-auto mr-auto"
+                style={{ maxWidth: "800px" }}
+              >
+                <select
+                  className="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                  value={market}
+                  onChange={onMarketChange}
+                >
+                  <option defaultValue="Aave">Select one</option>
+                  {markets.map((market) => (
+                    <option
+                      style={{ fontSize: "1rem" }}
+                      value={market.name}
+                      key={market.name}
+                    >
+                      {market.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="content mr-auto ml-auto">
+                  <Deposit
+                    account={account}
+                    balance={balance}
+                    market={market}
+                  />
+                  <Withdrawl
+                    account={account}
+                    balance={balance}
+                    market={market}
+                  />
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+        <div class="right-bar">
+          <Balance />
+        </div>
+        <div class="footer">footer</div>
       </div>
     </div>
   );
