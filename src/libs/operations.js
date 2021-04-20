@@ -21,15 +21,11 @@ export const deposit = (market, type, amount) => {
 };
 
 export const withdraw = (market, type, amount) => {
-  if (market === "Compound") {
-    if (type === "cDAI") {
-      compoundWithdraw(amount);
-    }
+  if (market === "Compound" && type === "cDAI") {
+    compoundWithdraw(amount);
   }
 
-  if (market === "Aave") {
-    if (type === "aDAI") {
-      aaveWithdraw(amount);
-    }
+  if (market === "Aave" && type === "aDAI") {
+    aaveWithdraw(amount);
   }
 };

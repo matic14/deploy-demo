@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Deposit from "./components/Deposit";
 import Withdrawl from "./components/Withdraw";
-// import Balance from "./components/Balance";
+import Balance from "./components/Balance";
 import { loadWeb3 } from "./connection/walletConnection";
 import markets from "./configs/markets";
 
@@ -71,7 +71,7 @@ function App() {
               <Deposit account={account} balance={balance} market={market} />
               <Withdrawl account={account} balance={balance} market={market} />
             </div>
-            {/* <Balance /> */}
+            <Balance />
           </main>
         </div>
       </div>
