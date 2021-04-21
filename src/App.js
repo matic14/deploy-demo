@@ -44,12 +44,12 @@ function App() {
 
   return (
     <div>
-      <div class="main-container">
-        <div class="header">header</div>
-        <div class="sidebar">
-          <Market />
+      <div className="main-container">
+        <div className="header"></div>
+        <div className="sidebar">
+          <Market onMarketChange={onMarketChange} />
         </div>
-        <div class="main">
+        <div className="main">
           <div className="container-fluid mt-5">
             <div className="row">
               <main
@@ -90,10 +90,10 @@ function App() {
             </div>
           </div>
         </div>
-        <div class="right-bar">
+        <div className="right-bar">
           <Balance />
         </div>
-        <div class="footer">footer</div>
+        <div className="footer"></div>
       </div>
     </div>
   );

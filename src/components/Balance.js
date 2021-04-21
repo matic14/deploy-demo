@@ -5,16 +5,12 @@ import Web3 from "web3";
 import TokenBalance from "./TokenBalance";
 
 const Balance = (props) => {
-  // const [tokenBalance, setTokenBalance] = useState(0);
-
-  // function getTokenBalance(tokenAddress) {
-  //   return tokenAddress;
-  // }
   return (
     <div>
       {tokens.map((token) => {
         return (
           <TokenBalance
+            key={token.name}
             tokenAddress={token.tokenAddress}
             tokenName={token.name}
           />

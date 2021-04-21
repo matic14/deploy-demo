@@ -12,7 +12,7 @@
 .sidebar {
   grid-column: 1 / 2;
   grid-row: 2 / 10;
-  background-color: rgb(196, 228, 226);
+  background-color: rgb(214, 208, 208);
 }
 .main {
   grid-column: 2/6;
