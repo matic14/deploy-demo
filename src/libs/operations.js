@@ -12,11 +12,11 @@ export const deposit = (market, type, amount) => {
   console.log("OPERATION Deposit token", market, type, amount);
 
   if (market === "Compound" && type === "DAI") {
-    compoundDeposit(amount);
+    return compoundDeposit(amount);
   }
 
   if (market === "Aave" && type === "DAI") {
-    aaveDeposit(amount);
+    return aaveDeposit(amount);
   }
 };
 

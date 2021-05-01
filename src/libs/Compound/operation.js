@@ -2,20 +2,17 @@ import { initContract } from "../contracts";
 import { sendTransaction } from "../transaction";
 
 export function deposit(amount) {
-  initContract().then(({ account, erc20Token, cToken }) => {
+  return initContract().then(({ account, erc20Token, cToken }) => {
     if (cToken !== "undefined") {
+      console.log("In deposit c opeartion");
       const tx = erc20Token.methods.approve(cToken._address, amount);
-      sendTransaction(tx, account)
-        .then(function (receipt) {
-          if (receipt.status) {
-            const tx = cToken.methods.mint(amount);
-            console.log("tx", tx);
-            sendTransaction(tx, account);
-          } else throw new Error("Transaction Not Approved");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      return sendTransaction(tx, account).then(function (receipt) {
+        if (receipt.status) {
+          const tx = cToken.methods.mint(amount);
+          console.log("tx", tx);
+          return sendTransaction(tx, account);
+        } else throw new Error("Transaction Not Approved");
+      });
     }
   });
 }

@@ -4,6 +4,8 @@ import erc20Abi from "../ABIs/erc20";
 import Aave from "../ABIs/AaveLendingPool.json";
 import { withdraw } from "../libs/operations";
 
+import availableTokens from "../configs/availableTokens";
+
 const Deposit = (props) => {
   const [inputToken, setInputToken] = useState("Ether");
   const [tokenBalance, setTokenBalance] = useState(props.tokenBalance1);
@@ -42,6 +44,18 @@ const Deposit = (props) => {
     withdraw(props.market, inputToken, inputAmount);
   };
 
+  function getTokensDisplay(availableTokens) {
+    const tokensToDisplay = [];
+    Object.entries(availableTokens).forEach((token) => {
+      const mToken = token[1].protocols;
+      mToken.filter((marketToken) => {
+        if (props.market.toLowerCase() === marketToken.name.toLowerCase())
+          tokensToDisplay.push(<option key={token[0]}>{token[0]}</option>);
+      });
+    });
+    return tokensToDisplay;
+  }
+
   return (
     <div className="card mb-4">
       <div className="card-body">
@@ -61,7 +75,8 @@ const Deposit = (props) => {
               value={inputToken}
               onChange={onTokenChange}
             >
-              {withdrawTokens.map((token) => (
+              {getTokensDisplay(availableTokens)}
+              {/* {withdrawTokens.map((token) => (
                 <option
                   style={{ fontSize: "1rem" }}
                   value={token.name}
@@ -69,7 +84,7 @@ const Deposit = (props) => {
                 >
                   {token.symbol}
                 </option>
-              ))}
+              ))} */}
             </select>
           </div>
 

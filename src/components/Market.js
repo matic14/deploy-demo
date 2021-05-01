@@ -4,12 +4,6 @@ import markets from "../configs/markets";
 import { ListGroup } from "react-bootstrap";
 
 const Market = (props) => {
-  //   const [marketName, setMarketName] = useState("");
-  //   function onMarketChange(e) {
-  //     e.preventDefault();
-  //     setMarketName(e.target.value);
-  //   //   }
-  //   console.log(marketName);
   return (
     <ListGroup defaultActiveKey="#link1">
       {markets.map((market) => {
