@@ -1,1 +1,1 @@
-module.exports = [{ name: "Aave" }, { name: "Compound" }];
+module.exports = [{ name: 'Aave' }, { name: 'Compound' }]

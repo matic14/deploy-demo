@@ -1,59 +1,57 @@
-import { useState, useEffect } from "react";
-import withdrawTokens from "../connection/withdrawToken";
-import erc20Abi from "../ABIs/erc20";
-import Aave from "../ABIs/AaveLendingPool.json";
-import { withdraw } from "../libs/operations";
+import { useState, useEffect } from 'react'
+import withdrawTokens from '../connection/withdrawToken'
+import erc20Abi from '../ABIs/erc20'
+import Aave from '../ABIs/AaveLendingPool.json'
+import { withdraw } from '../libs/operations'
 
-import availableTokens from "../configs/availableTokens";
+import availableTokens from '../configs/availableTokens'
 
 const Deposit = (props) => {
-  const [inputToken, setInputToken] = useState("Ether");
-  const [tokenBalance, setTokenBalance] = useState(props.tokenBalance1);
-  const [inputAmount, setInputAmount] = useState(0);
+  const [inputToken, setInputToken] = useState('Ether')
+  const [tokenBalance, setTokenBalance] = useState(props.tokenBalance1)
+  const [inputAmount, setInputAmount] = useState(0)
 
   function onTokenChange(e) {
-    setInputToken(e.target.value);
-    let balance = getTokenBalance(e.target.value);
-    console.log("TOKEN_BALANCE --", balance);
+    setInputToken(e.target.value)
+    let balance = getTokenBalance(e.target.value)
+    console.log('TOKEN_BALANCE --', balance)
   }
 
   function getTokenBalance(reqtoken) {
-    console.log("token --- ", reqtoken);
-    const web3 = window.web3;
-    const tokenValue = withdrawTokens.filter(
-      (token) => token.name === reqtoken
-    );
+    console.log('token --- ', reqtoken)
+    const web3 = window.web3
+    const tokenValue = withdrawTokens.filter((token) => token.name === reqtoken)
 
-    let walletAddress = "0x4aB289D129F77676C9d239fD22bf8cd62F8b13E3";
+    let walletAddress = '0x4aB289D129F77676C9d239fD22bf8cd62F8b13E3'
 
-    console.log("tokenValue", tokenValue);
-    let contract = new web3.eth.Contract(erc20Abi, tokenValue[0].tokenAddress);
-    console.log("contract --", contract);
+    console.log('tokenValue', tokenValue)
+    let contract = new web3.eth.Contract(erc20Abi, tokenValue[0].tokenAddress)
+    console.log('contract --', contract)
     function getBalance() {
-      return contract.methods.balanceOf(walletAddress).call();
+      return contract.methods.balanceOf(walletAddress).call()
     }
 
     getBalance().then(function (result) {
-      setTokenBalance(result);
-    });
+      setTokenBalance(result)
+    })
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // props.withdrawToken(inputAmount);
-    withdraw(props.market, inputToken, inputAmount);
-  };
+    withdraw(props.market, inputToken, inputAmount)
+  }
 
   function getTokensDisplay(availableTokens) {
-    const tokensToDisplay = [];
+    const tokensToDisplay = []
     Object.entries(availableTokens).forEach((token) => {
-      const mToken = token[1].protocols;
+      const mToken = token[1].protocols
       mToken.filter((marketToken) => {
         if (props.market.toLowerCase() === marketToken.name.toLowerCase())
-          tokensToDisplay.push(<option key={token[0]}>{token[0]}</option>);
-      });
-    });
-    return tokensToDisplay;
+          tokensToDisplay.push(<option key={token[0]}>{token[0]}</option>)
+      })
+    })
+    return tokensToDisplay
   }
 
   return (
@@ -71,7 +69,7 @@ const Deposit = (props) => {
             <select
               className="form-control"
               id="sel1"
-              style={{ marginBottom: "25px" }}
+              style={{ marginBottom: '25px' }}
               value={inputToken}
               onChange={onTokenChange}
             >
@@ -95,8 +93,8 @@ const Deposit = (props) => {
               placeholder="0"
               required
               onChange={(e) => {
-                e.preventDefault();
-                setInputAmount(e.target.value);
+                e.preventDefault()
+                setInputAmount(e.target.value)
               }}
             />
             <div className="input-group-append">
@@ -106,18 +104,13 @@ const Deposit = (props) => {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary btn-block btn-lg"
-            value="Submit"
-            id="submitButton"
-          >
+          <button type="submit" className="btn btn-primary btn-block btn-lg" value="Submit" id="submitButton">
             Withdraw
           </button>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Deposit;
+export default Deposit
